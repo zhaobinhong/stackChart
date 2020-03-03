@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>stacked graph</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        .main{
+            padding: 50px;
+            text-align: center;
+        }
+        .button_graph {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .button_data {
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <canvas id="canvas" width="800" height="550"></canvas>
+    <div id="popup_div" style="display:block;background-color:#00ffff;width:100;height:100">
+    </div>
+    <div>
+        <button class="button_graph" onclick="toBarGraph()">Bar</button>
+        <button class="button_graph" onclick="toStreamGraph()">Stream</button>
+
+        <button class="button_data" onclick="toDataset1()">Dataset1</button>
+        <button class="button_data" onclick="toDataset2()">Dataset2</button>
+    </div>
+</div>
+
+<script src="./main.js"></script>
+
+</body>
+</html>

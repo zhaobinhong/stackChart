@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* css 代码  */
+
+        td div {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script src="js/highcharts.js"></script>
+    <script src="js/highcharts-zh_CN.js"></script>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>表结构</th>
+        <th>字节使用情况</th>
+        <th>XXX</th>
+    </tr>
+    <tr>
+        <td>
+            <div id="container0" style="min-width:400px;height:200px">第一个表</div>
+        </td>
+        <td>
+            <div id="container1" style="min-width:400px;height:200px"></div>
+        </td>
+        <td>
+            <div id="container2" style="min-width:400px;height:200px"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="container00" style="min-width:400px;height:200px">第二个表</div>
+        </td>
+        <td>
+            <div id="container11" style="min-width:400px;height:200px"></div>
+        </td>
+        <td>
+            <div id="container222" style="min-width:400px;height:200px"></div>
+        </td>
+    </tr>
+</table>
+<script>
+    // JS 代码
+    function drawChart(ele, data) {
+        var chart = Highcharts.chart(ele, {
+            chart: {
+                type: 'bar',
+                height: '200px'
+            },
+            colors: ['#90ed7d', '#f15c80', '#8085e8', '#8d4653', '#e4d354',
+                '#91e8e1', '#7cb5ec', '#434348', '#8085e9', '#f7a35c'],
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                },
+                stackLabels: {  // 堆叠数据标签
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            // labels:{
+            //     style:{
+            //         color:"#ff0000"
+            //     },
+            //     items:[{
+            //         html:'Labels 1 : <a href="http://www.hcharts.cn" target="_blank">HCharts.cn</a>',
+            //         style: {
+            //             left: '50px',
+            //             top: '0px',
+            //         }
+            //     },{
+            //         html:'Labels 2 : <a href="http://www.hcharts.cn" target="_blank">HCharts.cn</a>',
+            //         style: {
+            //             left: '50px',
+            //             top: '50px',
+            //             color:'#006cee',
+            //             fontSize:'20px',
+            //             fontWeight:'bold',
+            //             fontFamily:'微软雅黑'
+            //         }
+            //     }]
+            // },
+            tooltip: {
+                // shared: true,
+                // useHTML: true,
+                // headerFormat: '<small>{point.key}</small><table>',
+                // pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+                //     '<td style="text-align: right"><b>{point.y} EUR</b></td></tr>',
+                // footerFormat: '</table>',
+                // valueDecimals: 2
+                enabled: false,
+                formatter: function () {
+                    return '<span style="color: ' + this.series.color + '">\u25CF</span> ' +
+                        this.series.name + ': <b>' + this.y + '</b> 字节'
+                }
+            },
+            legend: {
+                /* 图例显示顺序反转
+                 * 这是因为堆叠的顺序默认是反转的，可以设置
+                 * yAxis.reversedStacks = false 来达到类似的效果
+                 */
+                enabled: false,
+                reversed: true,
+                itemStyle: {
+                    'fontSize': '10px'
+                }
+                // floating: true,
+                // align: 'left',
+                // verticalAlign: 'top',
+                // x: 90,
+                // y: 45,
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        style: {
+                            // 如果不需要数据标签阴影，可以将 textOutline 设置为 'none'
+                            textOutline: '1px 1px black'
+                        },
+                        // format: '{y} mm'
+                        formatter: function () {
+                            return this.series.name + `<br>` + `( ` + this.series.userOptions.nameCode + ` )<br>` + this.y + ` 字节`
+                        }
+                    }
+                },
+            },
+            series: data
+        });
+    }
+
+    var data = [{
+        name: '字段1',
+        nameCode: 'field1',
+        data: [300]
+    }, {
+        name: '字段2',
+        nameCode: 'field2',
+        data: [500]
+    }, {
+        name: '字段3',
+        nameCode: 'field3',
+        data: [1000]
+    }]
+    var data11 = [{
+        name: '字段1',
+        nameCode: 'field1',
+        data: [320]
+    }, {
+        name: '字段2',
+        nameCode: 'field2',
+        data: [700]
+    }, {
+        name: '字段3',
+        nameCode: 'field3',
+        data: [1200]
+    }]
+
+    drawChart('container1', data)
+    drawChart('container11', data11)
+</script>
+</body>
+</html>
