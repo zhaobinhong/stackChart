@@ -78,8 +78,7 @@
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     },
                     formatter:function(){
-                        console.log(this)
-                        return Number(this.total) + 1;
+                        return Number(this.total);
                     }
                 }
             },
@@ -147,7 +146,7 @@
                         },
                         // format: '{y} mm'
                         formatter: function () {
-                            return this.series.name + `<br>` + `( ` + this.series.userOptions.nameCode + ` )<br>` + (Number(this.y) + 1) + ` 字节`
+                            return this.series.name + `<br>` + `( ` + this.series.userOptions.nameCode + ` )<br>` + (Number(this.y)) + ` 字节`
                         }
                     }
                 },
